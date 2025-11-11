@@ -1,1 +1,7 @@
 yo:$2y$12$g3Zre/5ID.gDicSHl/jiyuvySSU6egR7OnuOLokqRhR.Fn3i03G6u
+usuario:$2y$12$7FZUon5Shn1I3xVuh9TuauR967bNEuVBdmK8QXr0HlwhvteKmIzfu
+hola:$2y$12$N8q5ltaV2ZZY4IfUjlvhJuoTls9fLFcU3vLjMNuAENgExa/rPJXYK
+hola:$2y$12$Kxhqw2PJDHbEyyzsQ6saSedgY5GGa1ayXgXcJ5Sgmd4csrP7/R2l6
+hola:$2y$12$1HP/oQD0h4fhSQOO5vJvnuFXZ4gvqWvm5/vi460IVLFSLedLV2Bdi
+hola:$2y$12$Ge7zwd9BOQlWof8o9ISW8O396n87w1./0GUNQqs5ighCQiAqkmY.m
+maria:$2y$12$I9R6q3IMj641A8kM/deF1O8QCpVPlwF.a8ZacVC76jZdNJPyV1VeK

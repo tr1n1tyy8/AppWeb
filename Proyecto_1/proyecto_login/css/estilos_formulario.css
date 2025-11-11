@@ -1,0 +1,74 @@
+@media (max-width: 2500px) { 
+
+    * {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url("../images/login_bg.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        
+    }
+
+    .flexbox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        width: 800px;
+        height: 600px;
+        border-radius: 20px;
+        padding: 5px;
+        background-color: white;
+        transition: all 0.3s ease;
+    }
+
+    .flexbox h1 {
+        margin-top: 0;
+        margin-bottom: 100px;
+        font-size: 50px;
+        width: 85%;
+    }
+
+    .flexbox form {
+        font-size: larger;
+    }
+
+    .flexbox p {
+        margin-top: 100px;
+        margin-bottom: 0;
+        font-size: large;
+    }
+
+    .flexbox button {
+        width: 300px;
+        height: 50px;
+        margin-top: 40px;
+        font-size: 20px;
+        background-color: #44825C;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px grey;
+    }
+
+    .flexbox:hover {
+        transform: scale(1.05);
+    }
+}

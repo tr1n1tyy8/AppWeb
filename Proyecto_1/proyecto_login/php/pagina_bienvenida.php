@@ -14,7 +14,7 @@ exit;
     <meta charset="UTF-16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Bienvenida</title>
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/estilos_formulario.css">
     <link rel="icon" href="">
 </head>
 <body>
@@ -22,10 +22,8 @@ exit;
         <h1>Bienvenido, <?php echo $_SESSION['usuario']; ?> 🎉</h1>
         <p>Has iniciado sesión correctamente.</p>
         <p>¿Qué desea hacer ahora?</p>
-        <li>
-            <ul><p>Navegar</p></ul>
-        </li>
-        <li><p><a href="cerrar_sesion.php">Cerrar sesión</a></p></li>
+        <button>Navegar</button>
+        <button><a href="cerrar_sesion.php">Cerrar sesión</a></button>
     </div>
 </body>
 </html>

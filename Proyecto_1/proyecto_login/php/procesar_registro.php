@@ -3,8 +3,6 @@
 
 $usuario = $_POST['usuario'];
 $contraseña = $_POST['contraseña'];
-echo "Variable usuario",$usuario;
-echo "Variable contraseña",$contraseña;
 
 // Guardamos los datos en un archivo de texto (a modo de BBDD) con contraseña encriptada (hash)
 $archivo = fopen("usuarios.txt", "a");
@@ -18,11 +16,14 @@ fclose($archivo);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de resgistro</title>
+    <title>Usuario registrado correctamente</title>
+    <link rel="stylesheet" href="../css/estilos_formulario.css">
+    <link rel="icon" href="">
 </head>
 <body>
-    <h1>Se ha creado el usuario correctamente</h1>
-    <br>
-    <p><a href="iniciar_sesion.php">Inicie sesión aquí</a></p>
+    <div class="flexbox">
+        <h1>Se ha creado el usuario correctamente</h1>
+        <p><a href="iniciar_sesion.php">Inicie sesión aquí</a></p>
+    </div>
 </body>
 </html>
