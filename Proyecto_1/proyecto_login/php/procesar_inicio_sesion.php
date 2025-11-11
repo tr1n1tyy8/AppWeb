@@ -1,4 +1,5 @@
 <?php
+//PÁGINA PARA PROCESAR LOS DATOS DE INICIO DE SESIÓN DEL USUARIO
 
 session_start();
 $usuario = $_POST['usuario'];

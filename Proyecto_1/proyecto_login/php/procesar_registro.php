@@ -1,7 +1,10 @@
 <?php
+//PÁGINA PARA PROCESAR LOS DATOS DE REGISTRO DEL USUARIO
 
-$usuario = $POST_['usuario'];
-$contraseña = $POST_['contraseña'];
+$usuario = $_POST['usuario'];
+$contraseña = $_POST['contraseña'];
+echo "Variable usuario",$usuario;
+echo "Variable contraseña",$contraseña;
 
 // Guardamos los datos en un archivo de texto (a modo de BBDD) con contraseña encriptada (hash)
 $archivo = fopen("usuarios.txt", "a");

@@ -16,9 +16,9 @@
 
         <form action="procesar_registro.php" method="post">
             <label>Nombre de usuario:</label>
-            <input type="text" name="usuario" required style="height:18%; font-size:large"><br><br>
+            <input type="text" name="usuario" style="height:18%; font-size:large" required ><br><br>
             <label>Contraseña:</label>
-            <input type="password" name="contraseña" required style="height:15%; font-size:large"><br><br>
+            <input type="password" name="contraseña" style="height:15%; font-size:large" required ><br><br>
             <button type="submit">Registrarse</button>
         </form>
 
