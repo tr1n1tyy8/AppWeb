@@ -19,12 +19,25 @@ foreach ($usuarios as $linea) {
 
 // Comprobar si el usuario ha iniciado sesión correctamente y decidir qué hacer según que caso
 if ($login_exitoso) {
-header("Location: pagina_bienvenida.php");
+header("Location: index.php");
 exit;
 } 
 else {
-echo "<h1>Usuario o contraseña incorrectos</h1>";
-echo "<p><a href='iniciar_sesion.php'>Volver a intentar</a></p>";
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilos_formulario.css">
+    <title>Error</title>
+</head>
+<body>
+    <div class="flexbox">
+        <h1>Usuario o contraseña incorrectos</h1>
+        <p><a href='iniciar_sesion.php'>Volver a intentar</a></p>
+    </div>
+</body>
+</html>
