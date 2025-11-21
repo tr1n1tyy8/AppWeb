@@ -5,38 +5,41 @@ ini_set("display_errors", 1);
 //PÁGINA PARA PROCESAR LOS DATOS DE REGISTRO DEL USUARIO
 include "conexion.php";
 
+$exito = false;
+$mensaje = "";
+
 // Obtener los datos del formulario
 $usuario = $_POST['usuario'];
 $contraseña = $_POST['password'];
 
-// Encriptamos la contraseña
-$hash = password_hash($contraseña, PASSWORD_DEFAULT);
-
 // Comprobamos que el usuario no existe antes de hacer la consulta
-$stmt = $conn->prepare("SELECT * FROM usuarios WHERE usuario = ?");
-$stmt->bind_param("s", $usuario);
-$stmt->execute();
-$comprobar = $stmt->get_result();
+if ($usuario !== '' && $contraseña !== '') {
+    $comprobar = $conn->prepare("SELECT id FROM usuarios WHERE usuario = ?");
+    $comprobar->bind_param("s", $usuario);
+    $comprobar->execute();
+    $comprobar->store_result(); 
+}
 
 // Si el usuario ya existe, mostramos un mensaje
 if ($comprobar->num_rows > 0) {
-    echo "<h1>El usuario ya está registrado</h1>";
+    $mensaje = "El usuario ya está registrado";
 } else {
     // Si el usuario no existe, lo insertamos
+    $hash = password_hash($contraseña, PASSWORD_DEFAULT);
     $stmt = $conn->prepare("INSERT INTO usuarios (usuario, password) VALUES(?, ?)");
     $stmt->bind_param("ss", $usuario, $hash);
 
     if ($stmt->execute()) {
-        echo "<h1>Usuario registrado correctamente</h1>";
-        echo "<p><a href='login.php'>Iniciar sesión</a></p>";
+        $mensaje = "Usuario registrado correctamente";
+        $exito = true;
     } else {
         echo "<h1>Error al registrar al usuario</h1>";
     }
 }
 
-// Cerramos las consultas y la conexión
-$stmt->close();
+// Cerramos las conexión
 $conn->close();
+$comprobar->close();
 ?>
 
 
@@ -46,13 +49,18 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuario registrado correctamente</title>
-    <link rel="stylesheet" href="../css/estilos_formulario.css">
+    <link rel="stylesheet" href="../css/form_styles.css">
     <link rel="icon" href="">
 </head>
 <body>
     <div class="flexbox">
-        <h1>Se ha creado el usuario correctamente</h1>
-        <p><a href="iniciar_sesion.php">Inicie sesión aquí</a></p>
+        <?php if ($exito): ?>
+            <h1>Se ha creado el usuario correctamente</h1>
+            <p><a href="login.php">Inicie sesión aquí</a></p>
+        <?php else: ?>
+            <h1>El usuario ya está registrado</h1>
+            <p><a href="registro.php">Inténtelo de nuevo</a></p>
+        <?php endif; ?>
     </div>
 </body>
 </html>

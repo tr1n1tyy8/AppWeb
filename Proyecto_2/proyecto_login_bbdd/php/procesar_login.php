@@ -4,19 +4,20 @@
 session_start();
 include "conexion.php";
 $usuario = $_POST['usuario'];
-$contraseña= $_POST['contraseña'];
+$contraseña= $_POST['password'];
 
 // Consulta segura
 $stmt = $conn->prepare("SELECT id, password FROM usuarios WHERE usuario = ?");
 $stmt->bind_param("s", $usuario);
 $stmt->execute();
 $stmt->store_result();
+
 if ($stmt->num_rows > 0) {
     $stmt->bind_result($id, $hash);
     $stmt->fetch();
-    if (password_verify($password, $hash)) {
+    if (password_verify($contraseña, $hash)) {
         $_SESSION['usuario'] = $usuario;
-        header("Location: bienvenida.php");
+        header("Location: index.php");
         exit;
     }
     else {

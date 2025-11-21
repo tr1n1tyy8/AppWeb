@@ -6,7 +6,7 @@
     <meta charset="UTF-16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="../css/estilos_formulario.css">
+    <link rel="stylesheet" href="../css/form_styles.css">
     <link rel="icon" href="">
 </head>
 <body>
@@ -22,7 +22,7 @@
             <button type="submit">Registrarse</button>
         </form>
 
-        <p style="color: grey;">¿Ya tiene una cuenta? | <a href="iniciar_sesion.php">Inicie sesión aquí</a></p>
+        <p style="color: grey;">¿Ya tiene una cuenta? | <a href="login.php">Inicie sesión aquí</a></p>
     </div>
 </body>
 </html>

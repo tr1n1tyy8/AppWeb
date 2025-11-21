@@ -6,16 +6,18 @@
     <meta charset="UTF-16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de sesión</title>
-    <link rel="stylesheet" href="../css/estilos_formulario.css">
+    <link rel="stylesheet" href="../css/form_styles.css">
     <link rel="icon" href="">
     <title>Inicio de sesión</title>
 </head>
     <body>
         <div class="flexbox">
-            <h1>Inicie sesión con sus credenciales</h1>
+            <div class="titulo">
+                <h1>Inicie sesión con sus credenciales</h1>
+            </div>
             <br>
 
-            <form action="procesar_inicio_sesion.php" method="post">
+            <form action="procesar_login.php" method="post">
                 <label>Usuario:</label>
                 <input type="text" name="usuario" required style="height:18%; font-size:large"><br><br>
                 <label>Contraseña:</label>

@@ -15,7 +15,7 @@ exit;
     <meta charset="UTF-16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Principal</title>
-    <link rel="stylesheet" href="../css/estilos_pagina_principal.css">
+    <link rel="stylesheet" href="../css/index_styles.css">
     <link rel="icon" href="">
     <style>
         .buttons {
@@ -30,11 +30,13 @@ exit;
 </head>
 <body>
     <div class="flexbox">
-        <h1>Bienvenid@, <?php echo $_SESSION['usuario']; ?> 🎉</h1>
+        <div class="titulo">
+            <h1>Bienvenid@, <?php echo $_SESSION['usuario']; ?> 🎉</h1>
+        </div>
         <p>Has iniciado sesión correctamente.</p>
         <p>¿Qué desea hacer ahora?</p>
         <div class="buttons">
-            <button><a href="cerrar_sesion.php">Cerrar sesión</a></button>
+            <button><a href="logout.php">Cerrar sesión</a></button>
             <button><a href="registro.php">Crear una nueva cuenta</a></button>
         </div>
     </div>
