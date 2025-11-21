@@ -6,7 +6,7 @@
     <meta charset="UTF-16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="../css/form_styles.css">
+    <link rel="stylesheet" href="../css/estilos_formulario.css">
     <link rel="icon" href="">
 </head>
 <body>
@@ -18,11 +18,11 @@
             <label>Nombre de usuario:</label>
             <input type="text" name="usuario" style="height:18%; font-size:large" required ><br><br>
             <label>Contraseña:</label>
-            <input type="password" name="password" style="height:15%; font-size:large" required ><br><br>
+            <input type="password" name="contraseña" style="height:15%; font-size:large" required ><br><br>
             <button type="submit">Registrarse</button>
         </form>
 
-        <p style="color: grey;">¿Ya tiene una cuenta? | <a href="login.php">Inicie sesión aquí</a></p>
+        <p style="color: grey;">¿Ya tiene una cuenta? | <a href="iniciar_sesion.php">Inicie sesión aquí</a></p>
     </div>
 </body>
 </html>
