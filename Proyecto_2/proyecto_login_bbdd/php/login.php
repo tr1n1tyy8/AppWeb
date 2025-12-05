@@ -18,14 +18,14 @@
             <br>
 
             <form action="procesar_login.php" method="post">
-                <label>Usuario:</label>
+                <label>Nombre de usuario:</label>
                 <input type="text" name="usuario" required style="height:18%; font-size:large"><br><br>
                 <label>Contraseña:</label>
                 <input type="password" name="password" required style="height:15%; font-size:large"><br><br>
                 <button type="submit">Iniciar sesión</button>
             </form>
 
-            <p style="color: grey;">¿No tiene una cuenta? | <a href="registro.php">Regístrese aquí</a></p>
+            <p>¿No tiene una cuenta? | <a href="registro.php">Regístrese aquí</a></p>
         </div>
     </body>
 </html>

@@ -55,10 +55,14 @@ $comprobar->close();
 <body>
     <div class="flexbox">
         <?php if ($exito): ?>
-            <h1>Se ha creado el usuario correctamente</h1>
+            <div class="titulo">
+                <h1>Usuario creado</h1>
+            </div>
             <p><a href="login.php">Inicie sesión aquí</a></p>
         <?php else: ?>
-            <h1>El usuario ya está registrado</h1>
+            <div class="titulo">
+                <h1>El usuario ya está registrado</h1>
+            </div>
             <p><a href="registro.php">Inténtelo de nuevo</a></p>
         <?php endif; ?>
     </div>

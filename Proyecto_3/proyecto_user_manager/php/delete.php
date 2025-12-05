@@ -1,0 +1,12 @@
+<?php
+// PÁGINA PARA ELIMINAR UN USUARIO DE LA BASE DE DATOS
+
+include "db.php";
+
+$id = $_GET["id"];
+$stmt = $pdo->prepare("DELETE FROM usuarios WHERE id=?");
+$stmt->execute([$id]);
+header("Location: list.php");
+exit;
+
+?>

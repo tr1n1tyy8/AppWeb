@@ -11,7 +11,9 @@
 </head>
 <body>
     <div class="flexbox">
-        <h1>Regístrese si no tiene una cuenta</h1>
+        <div class="titulo">
+            <h1>Regístrese si no tiene una cuenta</h1>
+        </div>
         <br>
 
         <form action="procesar_registro.php" method="post">
@@ -22,7 +24,7 @@
             <button type="submit">Registrarse</button>
         </form>
 
-        <p style="color: grey;">¿Ya tiene una cuenta? | <a href="login.php">Inicie sesión aquí</a></p>
+        <p>¿Ya tiene una cuenta? | <a href="login.php">Inicie sesión aquí</a></p>
     </div>
 </body>
 </html>
