@@ -1,40 +1,44 @@
-<?php
-// PÁGINA PARA CREAR UN NUEVO USUARIO Y AÑADIRLO A LA BBDD
-
-include "db.php";
-
-if ($_POST) {
-$nombre = $_POST["nombre"];
-$email = $_POST["email"];
-$edad = $_POST["edad"];
-$rol = $_POST["rol"];
-$stmt = $pdo->prepare("INSERT INTO usuarios (nombre,email,edad,rol) VALUES (?,?,?,?)");
-$stmt->execute([$nombre, $email, $edad, $rol]);
-header("Location: list.php");
-exit;
-}
-
-?>
+<!--PÁGINA PARA CREAR USUARIOS/REGISTRARSE-->
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Crear Usuario</title>
+    <title>Creación de Usuarios</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="flexbox">
-        <h1>Crear Usuario</h1>
+        <h1>Creación de Usuarios</h1>
         <form method="POST">
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="number" name="edad" placeholder="Edad" required>
-            <select name="rol">
-                <option value="user">Usuario</option>
-                <option value="admin">Administrador</option>
-            </select>
-            <button class="boton" type="submit">Guardar</button>
+            <div class="contenedor">
+                <div class="user">
+                    <p>Nombre de usuario:</p>
+                    <br>
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="mail">
+                    <p>Dirección de correo:</p>
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="contraseña">
+                    <p>Contraseña:</p>
+                    <input type="password" name="contraseña" placeholder="Contraseña" required>
+                </div>
+                <div class="años">
+                    <p>Edad:</p>
+                    <input type="number" name="edad" placeholder="Edad" required>
+                </div>
+                <div class="rol">
+                    <p>Rol del usuario:</p>
+                    <select name="rol">
+                        <option value="user">Usuario</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <button class="boton" type="submit">Crear Usuario</button>
         </form>
     </div>
     <script src="../js/validacion.js"></script>

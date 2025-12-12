@@ -8,12 +8,12 @@ $dbname = "proyecto_user_manager";
 
 // Sentencia de manejo de errores en la conexión
 
-try {
-$pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} 
-catch (PDOException $e) {
-die("Error de conexión: " . $e->getMessage());
+$conn = new mysqli($host, $user, $pass, $dbname);
+if ($conn->connect_error) {
+    die("Error de conexión". $conn->connect_error);
 }
 
+/* He tenido que quitar la función "pdo" y cambiarla por "conn", ya que pdo usa sentencias diferentes en php 
+    que mysqli, y por tanto al implementar las funciones de registro de los anteriores proyectos no se podían
+    mezlar las dos sentencias así que he decidido cambiarla para que funcione */
 ?>

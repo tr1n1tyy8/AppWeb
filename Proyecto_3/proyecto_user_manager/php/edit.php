@@ -35,6 +35,7 @@ exit;
         <form method="POST">
             <input type="text" name="nombre" value="<?= $usuario['nombre'] ?>" required>
             <input type="email" name="email" value="<?= $usuario['email'] ?>" required>
+            <input type="password" name="contraseña" value="<?= $usuario['contraseña'] ?>" required>
             <input type="number" name="edad" value="<?= $usuario['edad'] ?>" required>
             <select name="rol">
                 <option value="user" <?= $usuario['rol']=='user'?'selected':'' ?>>Usuario</option>

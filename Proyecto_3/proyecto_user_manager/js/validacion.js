@@ -9,23 +9,28 @@ document.addEventListener("DOMContentLoaded", function() {
     const email = form.email.value.trim();
     const edad = form.edad.value.trim();
     const rol = form.rol.value;
+    const contraseña = form.contraseña.value.trim();
 
     let errores = [];
     if (nombre.length < 3) {
-    errores.push("El nombre debe tener al menos 3 caracteres.");
+        errores.push("El nombre debe tener al menos 3 caracteres.");
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-    errores.push("Introduce un email válido.");
+        errores.push("Introduce un email válido.");
     }
 
     if (isNaN(edad) || edad < 1 || edad > 120) {
-    errores.push("La edad debe ser un número entre 1 y 120.");
+        errores.push("La edad debe ser un número entre 1 y 120.");
     }
 
     if (rol !== "user" && rol !== "admin") {
-    errores.push("Selecciona un rol válido.");
+        errores.push("Selecciona un rol válido.");
+    }
+
+    if (nombre == null || email == null || edad == null || rol == null || contraseña == null) {
+        errores.push("El campo no puede estar vacío.")
     }
 
     if (errores.length > 0) {
