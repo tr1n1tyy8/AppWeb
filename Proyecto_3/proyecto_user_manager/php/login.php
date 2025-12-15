@@ -1,4 +1,4 @@
-<!--PÁGINA PARA QUE EL USUARIO INICIE SESIÓN-->
+<!--PÁGINA PARA QUE EL USUARIO INICIE SESIÓN (include session_check)-->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -13,19 +13,19 @@
     <body>
         <div class="flexbox">
             <div class="titulo">
-                <h1>Inicie sesión con sus credenciales</h1>
+                <h1>Iniciar Sesión</h1>
             </div>
             <br>
 
-            <form action="procesar_login.php" method="post">
+            <form action="procesar_login.php" method="POST">
                 <label>E-mail del usuario:</label>
-                <input type="text" name="usuario" required style="height:18%; font-size:large"><br><br>
+                <input type="email" name="email" placeholder="Email" style="height:18%; font-size:large"><br><br>
                 <label>Contraseña:</label>
-                <input type="password" name="contraseña" required style="height:15%; font-size:large"><br><br>
+                <input type="password" name="contraseña" placeholder="Contraseña" style="height:15%; font-size:large"><br><br>
                 <button type="submit">Iniciar sesión</button>
             </form>
 
-            <p>¿No tiene una cuenta? | <a href="create.sphp">Regístrese aquí</a></p>
+            <p>¿No tiene una cuenta? | <a href="create.php">Regístrese aquí</a></p>
         </div>
     </body>
 </html>

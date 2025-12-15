@@ -2,22 +2,27 @@
 // PÁGINA PARA EDITAR EL USUARIO ACTUAL
 
 include "db.php";
+//include session_check
+
+// Si el usuario no está logado (no tiene id la url)
+if (!isset($_GET['id'])) {
+    header("Location: list.php");
+    exit;
+}
 
 $id = $_GET["id"];
-$stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id=?");
-$stmt->execute([$id]);
-$usuario = $stmt->fetch();
 
-if ($_POST) {
-$nombre = $_POST["nombre"];
-$email = $_POST["email"];
-$edad = $_POST["edad"];
-$rol = $_POST["rol"];
-$update = $pdo->prepare("UPDATE usuarios SET nombre=?, email=?, edad=?, rol=? WHERE
-id=?");
-$update->execute([$nombre, $email, $edad, $rol, $id]);
-header("Location: list.php");
-exit;
+// Obtener los datos del usuario
+$stmt = $conn->prepare("SELECT id, nombre, email, contraseña, edad, rol FROM usuarios WHERE id = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$usuario = $stmt->get_result()->fetch_assoc();
+
+// Si el usuario no existe, redirigirlo
+if (!$usuario) {
+    header("Location: list.php");
+    echo "El usuario no existe";
+    exit;
 }
 
 ?>
@@ -32,17 +37,18 @@ exit;
 <body>
     <div class="flexbox">
         <h1>Editar Usuario</h1>
-        <form method="POST">
-            <input type="text" name="nombre" value="<?= $usuario['nombre'] ?>" required>
-            <input type="email" name="email" value="<?= $usuario['email'] ?>" required>
-            <input type="password" name="contraseña" value="<?= $usuario['contraseña'] ?>" required>
-            <input type="number" name="edad" value="<?= $usuario['edad'] ?>" required>
+        <form method="POST" action="procesar_edit.php?id=<?= $usuario['id'] ?>"> <!--Comprobar q usuario q se está editando es correcto-->
+            <input type="text" name="nombre" value="<?= $usuario['nombre'] ?>" placeholder="Nombre">
+            <input type="email" name="email" value="<?= $usuario['email'] ?>" placeholder="Email">
+            <input type="password" name="contraseña" value="<?= $usuario['contraseña'] ?>" placeholder="Contraseña">
+            <input type="number" name="edad" value="<?= $usuario['edad'] ?>" placeholder="Edad">
             <select name="rol">
                 <option value="user" <?= $usuario['rol']=='user'?'selected':'' ?>>Usuario</option>
                 <option value="admin" <?= $usuario['rol']=='admin'?'selected':'' ?>>Administrador</option>
             </select>
             <button class="boton" type="submit">Actualizar</button>
         </form>
+        <a href="list.php">Volver al listado</a>
     </div>
     <script src="../js/validacion.js"></script>
 </body>

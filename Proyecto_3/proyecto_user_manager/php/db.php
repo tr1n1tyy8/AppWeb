@@ -9,7 +9,7 @@ $dbname = "proyecto_user_manager";
 // Sentencia de manejo de errores en la conexión
 
 $conn = new mysqli($host, $user, $pass, $dbname);
-if ($conn->connect_error) {
+if ($conn->connect_errno) {
     die("Error de conexión". $conn->connect_error);
 }
 

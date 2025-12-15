@@ -1,16 +1,16 @@
-<!--PÁGINA PARA CREAR USUARIOS/REGISTRARSE-->
+<!--PÁGINA PARA CREAR USUARIOS/REGISTRARSE (include session_check)-->
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Creación de Usuarios</title>
+    <title>Creación del Usuario</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="flexbox">
-        <h1>Creación de Usuarios</h1>
-        <form method="POST">
+        <h1>Registro de Usuario</h1>
+        <form method="POST" action="procesar_create.php">
             <div class="contenedor">
                 <div class="user">
                     <p>Nombre de usuario:</p>
