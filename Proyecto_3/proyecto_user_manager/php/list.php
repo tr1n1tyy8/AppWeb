@@ -16,7 +16,7 @@ $usuarios = $stmt->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <div class="flexbox">
+    <div class="flexbox_list">
         <h1>Usuarios</h1>
         <table>
             <tr>
@@ -30,17 +30,14 @@ $usuarios = $stmt->fetch_all(MYSQLI_ASSOC);
                 <td><?= $u['contraseña'] ?></td>
                 <td><?= $u['edad'] ?></td>
                 <td><?= $u['rol'] ?></td>
+                <td>
+                    <a href="edit.php?id=<?$u['id'] ?>">Editar</a>
+                    <a href="delete.php?id=<?= $u['id'] ?>">Eliminar</a> 
+                </td>
             </tr>
-            <form action="edit.php?id=<?= $u['id'] ?>" method="get">
-                <button class="boton" type="submit">Editar</a>
-            </form>
-                
-                <a class="boton-delete" href="delete.php?id=<?= $u['id'] ?>">Eliminar</a>
-            <form action="create.php" method="get">
-                <button class="boton" type="submit">Crear Usuario</button>
-            </form>
             <?php endforeach; ?>
         </table>
+        <p><a href="../php/index.php">Volver a la página principal</a> | <a href="../php/create.php">Crear nuevo usuario</a></p>
     </div>
 </body>
 </html>
