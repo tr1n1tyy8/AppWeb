@@ -37,6 +37,7 @@ if (!$usuario) {
 <body>
     <div class="flexbox">
         <h1>Editar Usuario</h1>
+<!--Formulario para editar usuario-->
         <form method="POST" action="procesar_edit.php?id=<?= $usuario['id'] ?>"> <!--Comprobar q usuario q se está editando es correcto-->
             <input type="text" name="nombre" value="<?= $usuario['nombre'] ?>" placeholder="Nombre">
             <input type="email" name="email" value="<?= $usuario['email'] ?>" placeholder="Email">
@@ -46,7 +47,12 @@ if (!$usuario) {
                 <option value="user" <?= $usuario['rol']=='user'?'selected':'' ?>>Usuario</option>
                 <option value="admin" <?= $usuario['rol']=='admin'?'selected':'' ?>>Administrador</option>
             </select>
-            <button class="boton" type="submit">Actualizar</button>
+            <button type="submit" class="button">Actualizar</button>
+        </form>
+<!--Formulario para eliminar usuario (onsubmit es JS)-->
+        <form method="POST" action="delete.php?id=<?$usuario['id']?>" onsubmit="return confirm('¿Está seguro de que desea eliminar el usuario?')">
+            <input type="hidden" name="id" value="<?php echo $id;?>"> <!--Para que obtenga el id del usuario a borrar y no se muestre-->
+            <button type="submit" class="button">Eliminar</button>
         </form>
         <a href="list.php">Volver al listado</a>
     </div>

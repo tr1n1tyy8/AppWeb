@@ -5,69 +5,76 @@ include "db.php";
 //include session_start
 
 // Comprobar que se han recibido los datos y el ID
-if (!isset($_GET['id']) || !$_POST) {
-    header("Location: list.php");
-    echo "Edición fallida";
-    exit;
-}
+if ($_POST && isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-$id = $_GET['id'];
+    $nombre = $_POST['nombre'];
+    $email= $_POST['email'];
+    $contraseña = trim($_POST['contraseña']);
+    $edad = $_POST['edad'];
+    $rol = $_POST['rol'];
 
-// Obtener los datos para que el usuario pueda cambiar los valores que quiera sin q sean obligatorios
-$stmt = $conn->prepare("SELECT nombre, email, contraseña, edad, rol FROM usuarios WHERE id = ?");
-$stmt->bind_param("id", $id);
-$stmt->execute();
-$result = $stmt->get_result();
-$usuario_existente = $result->fetch_assoc();
+    // Comprobar email duplicado en la bbdd ??
+    if (!empty($email)) {
+        $check_email = $pdo->prepare("SELECT id FROM usuarios WHERE email = ? AND id != )");
+        $check_email->execute([$email, $id]);
+        if($check_email->fetch()) {
+            echo "El email ya existe en la base de datos.";
+            header("Location: edit.php");
+            exit;
+        }
+    }
+    // Obtener los datos para que el usuario pueda cambiar los valores que quiera sin q sean obligatorios ??
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
+    $stmt->execute(['id']);
+    $usuario_actual= $stmt->fetch();
 
-if (!$usuario_existente) {
-    header("Location: list.php");
-    echo "Usuario no encontrado";
-    exit;
-}
+    if (!$usuario_actual) {
+        header("Location: list.php");
+        echo "Usuario no encontrado";
+        exit;
+    }
 
-$nombre = $_POST['nombre'];
-$email= $_POST['email'];
-$contraseña = $_POST['contraseña'];
-$edad = $_POST['edad'];
-$rol = $_POST['rol'];
+    // Si el campo está vacío (pq no lo quiere actualizar) usa el valor por defecto en la bbdd
+    $nombre_vacio = !empty($nombre) ? $nombre : $usuario_actual['nombre'];
+    $email_vacio = !empty($email) ? $email : $usuario_actual['email'];
+    $edad_vacio = !empty($edad) ? $edad : $usuario_actual['edad'];
+    $rol_vacio = $rol; //rol siempre se envía por select
 
-// Si el campo está vacío (pq no lo quiere actualizar) usa el valor por defecto
-$nombre_vacio = empty($nombre) ? $usuario_existente['nombre'] : $nombre;
-$email_vacio = empty($email) ? $usuario_existente['email'] : $email;
-$edad_vacio = empty($edad) ? $usuario_existente['edad'] : $edad;
-$rol_vacio = $rol;
+    // Ejecutar consulta de update
+    $query = "UPDATE usuarios SET nombre = :nom, email = :em, edad = :ed, rol = :rol";
+    $params = [
+        'nom' => $nombre_vacio,
+        'em' => $email_vacio,
+        'ed' => $edad_vacio,
+        'rol' => $rol_vacio,
+        'id' => $id
+    ];
 
-// Ejecutar consulta de update
-$query = "UPDATE usuarios SET nombre=?, email=?, edad=?, rol=?";
-$tipos = "ssis";
-$params = [&$nombre, &$email, &$edad, &$rol];
+    // Añadir contraseña si se ha introducido una nueva
+    if (!empty($contraseña)) {
+        $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+        $query .= ", contraseña = :pass";
+        $params['pass'] = &$hash;
+    }
 
-// Añadir contraseña si se ha introducido
-if (!empty($contraseña)) {
-    $hash = password_hash($contraseña, PASSWORD_DEFAULT);
-    $query .= ", contraseña=?";
-    $tipos .= "s";
-    $params[] = &$hash;
-}
+    // Finalizar consulta y añadir ID
+    $query.= " WHERE id = :id";
 
-// Finalizar consulta y añadir ID
-$query.= " WHERE id=?";
-$tipos .= "i";
-$params[] = &$id;
+    // Ejecutar la consulta
+    $stmt_update = $pdo->prepare($query);
 
-$stmt = $conn->prepare($query);
-
-// Desempaqueta la lista de tipos de datos/variables de update y las pasa a bind_param (supera limitiacion ya que no acepta arrays)
-call_user_func(array($stmt, 'bind_param'), array_merge([$tipos], $params));
-
-if ($stmt->execute()) {
-    header("Location: list.php?update=success");
-    exit;
+    if ($stmt_update->execute($params)) {
+        header("Location: list.php?update=success");
+        exit;
+    } else {
+        header("Location: edit.php");
+        echo "Error al actualizar el usuario";
+        exit;
+    }
 } else {
     header("Location: list.php");
-    echo "Error al actualizar el usuario";
-    exit;
+    echo "Error inesperado.";
 }
 
 ?>

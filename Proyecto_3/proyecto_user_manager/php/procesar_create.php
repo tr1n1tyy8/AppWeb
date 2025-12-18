@@ -10,15 +10,13 @@ if ($_POST) {
     $email = $_POST["email"];
     $edad = $_POST["edad"];
     $rol = $_POST["rol"];
-    $contraseña = $_POST["contraseña"];
+    $contraseña = trim($_POST["contraseña"]);
 
     // Comprobamos que el usuario ya exista con el email
-    $check_stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
-    $check_stmt->bind_param("s", $email);
-    $check_stmt->execute();
-    $check_stmt->store_result();
+    $check_stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $check_stmt->execute([$email]);
 
-    if ($check_stmt->num_rows > 0) {    //si el mail ya existe
+    if ($check_stmt->fetch()) {    //si el mail ya existe, si ya hay resultado
         header("Location: login.php");
         echo "El usuario asociado al E-mail proporcionado ya existe";
         exit;
@@ -26,23 +24,28 @@ if ($_POST) {
 
     // Si el usuario no existe, lo agregamos
     $hash = password_hash($contraseña, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email, contraseña, edad, rol) VALUES (?,?,?,?,?)");
-    $stmt->bind_param("sssis", $nombre, $email, $hash, $edad, $rol);
+    $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email, contraseña, edad, rol) VALUES (?,?,?,?,?)");
 
-    if ($stmt->execute()) {
-            header("Location: login.php");
+    // Ejecutamos todo de golpe en un array
+    if ($stmt->execute([$nombre, $email, $hash, $edad, $rol])) {
+            header("Location: list.php");
             echo "Registro exitoso";
             exit;
 
-    } else {
+    } 
+    // Si hay un error en la conexión y transferencia de datos
+    else {
            header("Location: create.php");
            echo "Registro fallido";
            exit;
         }
 }
+// Si hay un error en el envío de datos del formulario
+else {
+    header("Location: create.php");
+    exit;
+}
 
-    // Cerramos las conexión
-    $conn->close();
-    $comprobar->close();
+//Con pdo no hace falta cerrar la sesión como con mysqli
 
 ?>

@@ -1,10 +1,7 @@
-<?php 
-// PÁGINA PRINCIPAL DEL USUARIO
+<?php include "db.php";?>
 
-include "db.php";
-
-?>
-
+<!-- PÁGINA PRINCIPAL DEL USUARIO-->
+ 
 <!DOCTYPE html>
 <html>
 <head>

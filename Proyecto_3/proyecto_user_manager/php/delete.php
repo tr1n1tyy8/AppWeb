@@ -7,12 +7,25 @@ include "db.php";
 if (isset($_GET['id'])) {
     $id = $_GET["id"];
 
-$stmt = $conn->prepare("DELETE FROM usuarios WHERE id = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
-}
+    try {
+        $stmt = $pdo->prepare("DELETE FROM usuarios WHERE id = ?");
 
-header("Location: list.php");
-exit;
+        if($stmt->execute([$id])) {
+            header("Location: list.php?msg=eliminado");
+            exit;
+        }
+        else {
+            header("Location: edit.php?msg=no_eliminado");
+            exit;
+        }
+    }
+    catch (PDOException $e) {
+        die("Error inesperado" . $e->getMessage());
+    }
+}
+else {
+    header("Location: list.php");
+    exit;
+}
 
 ?>
