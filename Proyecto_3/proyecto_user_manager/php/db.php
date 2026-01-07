@@ -16,6 +16,6 @@ catch(PDOException $e) {    //si se produce un error lanza el mensaje
     die("Error de conexión: " . $e->getMessage());
 }
 
-/* He tenido que sustiturir la función "pdo" en todos los archivos de proyectos anteriores 
-con sintaxis "mysqli" */
+/* He tenido que sustiturir la función "mysqli" en todos los archivos de proyectos anteriores 
+con sintaxis "pdo" */
 ?>

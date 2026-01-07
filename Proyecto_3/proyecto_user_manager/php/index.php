@@ -1,4 +1,4 @@
-<?php include "db.php";?>
+<?php include "session_check"; include "db.php";?>
 
 <!-- PÁGINA PRINCIPAL DEL USUARIO-->
  
@@ -12,7 +12,7 @@
 <body>
     <div class="flexbox">
         <h1>Gestión de Usuarios</h1>
-        <a class="boton" href="list.php">Ir al CRUD</a>
+        <a class="boton" href="list.php" style="color: black;">Ir al CRUD</a>
     </div>
 </body>
 </html>

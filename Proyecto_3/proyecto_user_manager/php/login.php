@@ -1,4 +1,6 @@
-<!--PÁGINA PARA QUE EL USUARIO INICIE SESIÓN (include session_check)-->
+<!--PÁGINA PARA QUE EL USUARIO INICIE SESIÓN-->
+
+<?php include "session_check"; include "db.php";?>
 
 <!DOCTYPE html>
 <html lang="es">

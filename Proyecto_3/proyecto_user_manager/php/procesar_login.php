@@ -2,8 +2,8 @@
 
 //PÁGINA PARA PROCESAR LOS DATOS DE INICIO DE SESIÓN DEL USUARIO
 session_start();
+
 include "db.php";
-//include session_check.php
 
 if ($_POST) {
     $email = $_POST['email'];
@@ -20,7 +20,7 @@ if ($_POST) {
         $_SESSION['usuario_rol'] = $usuario['rol'];
 
         header("Location: index.php");  //redirigimos a la pág. principal si todo es correcto
-        exit;
+        exit();
         }
     // Si falla algo en el login
     else {

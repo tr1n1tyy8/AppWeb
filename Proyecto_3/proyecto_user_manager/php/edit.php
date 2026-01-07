@@ -1,8 +1,8 @@
 <?php
 // PÁGINA PARA EDITAR EL USUARIO ACTUAL
 
+include "session_check";
 include "db.php";
-//include session_check
 
 // Si el usuario no está logado (no tiene id la url)
 if (!isset($_GET['id'])) {

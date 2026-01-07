@@ -1,11 +1,15 @@
 <?php
 // PÁGINA PARA LISTAR LOS DATOS DEL USUARIO ACTUAL
 
+include "session_check";
 include "db.php";
 
 $stmt = $pdo->query("SELECT * FROM usuarios");
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+echo "ID: " . $_SESSION['usuario_id'] . "<br>";
+echo "ROL: ".$_SESSION['usuario_rol'];
+die();
 ?>
 
 <!DOCTYPE html>
@@ -33,16 +37,16 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $u['edad'] ?></td>
                     <td><?= $u['rol'] ?></td>
                     <td>
-                        <a href="edit.php?id=<?$u['id'] ?>">Editar</a>
-                        <a href="delete.php?id=<?= $u['id'] ?>">Eliminar</a> 
+                        <?php if ($_SESSION['usuario_rol'] === 'admin'): ?>
+                            <a href="edit.php?id=<?$u['id'] ?>" style="color: black;">Editar</a>
+                            <a href="delete.php?id=<?= $u['id'] ?>" style="color: black;">Eliminar</a> 
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </table>
         </div>
         <a href="../php/create.php" style="color: black;">Crear Usuario</a>
-        <a href="../php/edit.php" style="color: black;">Editar Usuario</a>
-
         <a href="../php/index.php" style="color: black;">Volver al Inicio</a>
     </div>
 </body>

@@ -1,8 +1,8 @@
 <?php
 // PÁGINA PARA PROCESAR LA EDICIÓN DEL USUARIO
 
+include "session_check";
 include "db.php";
-//include session_start
 
 // Comprobar que se han recibido los datos y el ID
 if ($_POST && isset($_GET['id'])) {
