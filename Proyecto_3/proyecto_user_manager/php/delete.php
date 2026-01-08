@@ -1,7 +1,7 @@
 <?php
 // PÁGINA PARA ELIMINAR UN USUARIO DE LA BASE DE DATOS
 
-include "session_check";
+include "session_check.php";
 include "db.php";
 
 if (isset($_GET['id'])) {

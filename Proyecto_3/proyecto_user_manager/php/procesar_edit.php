@@ -1,7 +1,7 @@
 <?php
 // PÁGINA PARA PROCESAR LA EDICIÓN DEL USUARIO
 
-include "session_check";
+include "session_check.php";
 include "db.php";
 
 // Comprobar que se han recibido los datos y el ID
@@ -24,7 +24,7 @@ if ($_POST && isset($_GET['id'])) {
             exit;
         }
     }
-    // Obtener los datos para que el usuario pueda cambiar los valores que quiera sin q sean obligatorios ??
+    // Obtener los datos para que el usuario pueda cambiar los valores que quiera sin q sean obligatorios
     $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
     $stmt->execute(['id']);
     $usuario_actual= $stmt->fetch();
@@ -65,7 +65,7 @@ if ($_POST && isset($_GET['id'])) {
     $stmt_update = $pdo->prepare($query);
 
     if ($stmt_update->execute($params)) {
-        header("Location: list.php?update=success");
+        header("Location: list.php");
         exit;
     } else {
         header("Location: edit.php");
@@ -74,7 +74,7 @@ if ($_POST && isset($_GET['id'])) {
     }
 } else {
     header("Location: list.php");
-    echo "Error inesperado.";
+    die("Error inesperado");
 }
 
 ?>

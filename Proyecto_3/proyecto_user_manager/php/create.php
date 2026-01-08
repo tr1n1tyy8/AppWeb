@@ -1,6 +1,6 @@
 <!--PÁGINA PARA CREAR USUARIOS/REGISTRARSE-->
 
-<?php include "session_check"; include "db.php";?>
+<?php include "session_check.php"; include "db.php";?>
 
 <!DOCTYPE html>
 <html>

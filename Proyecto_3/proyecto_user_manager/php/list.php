@@ -1,15 +1,17 @@
 <?php
 // PÁGINA PARA LISTAR LOS DATOS DEL USUARIO ACTUAL
 
-include "session_check";
+include "session_check.php";
 include "db.php";
 
 $stmt = $pdo->query("SELECT * FROM usuarios");
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+/*
 echo "ID: " . $_SESSION['usuario_id'] . "<br>";
 echo "ROL: ".$_SESSION['usuario_rol'];
 die();
+*/
 ?>
 
 <!DOCTYPE html>

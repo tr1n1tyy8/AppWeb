@@ -1,7 +1,7 @@
 <?php
 // PÁGINA PARA CREAR UN NUEVO USUARIO Y AÑADIRLO A LA BBDD
 
-include "session_check";
+include "session_check.php";
 include "db.php";
 
 // Obtener datos del usuario

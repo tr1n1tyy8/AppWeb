@@ -1,7 +1,7 @@
 <?php
 // PÁGINA PARA EDITAR EL USUARIO ACTUAL
 
-include "session_check";
+include "session_check.php";
 include "db.php";
 
 // Si el usuario no está logado (no tiene id la url)
@@ -13,15 +13,14 @@ if (!isset($_GET['id'])) {
 $id = $_GET["id"];
 
 // Obtener los datos del usuario
-$stmt = $conn->prepare("SELECT id, nombre, email, contraseña, edad, rol FROM usuarios WHERE id = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$usuario = $stmt->get_result()->fetch_assoc();
+$stmt = $cpdo->prepare("SELECT * FROM usuarios WHERE id = ?");
+$stmt->execute([$id]);
+$usuario = $stmt->fetch();
 
 // Si el usuario no existe, redirigirlo
 if (!$usuario) {
     header("Location: list.php");
-    echo "El usuario no existe";
+    die("Usuario no encontrado");
     exit;
 }
 
