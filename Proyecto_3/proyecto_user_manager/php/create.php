@@ -1,6 +1,14 @@
 <!--PÁGINA PARA CREAR USUARIOS/REGISTRARSE-->
 
-<?php include "session_check.php"; include "db.php";?>
+<?php 
+include "session_check.php";
+include "db.php";
+// compruebo si el usuario es o no admin, para controlar sus accesos a las urls
+if ($_SESSION['usuario_rol'] !== 'admin') {
+    header("Location: index.php");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +33,7 @@
                 </div>
                 <div class="contraseña">
                     <p>Contraseña:</p>
-                    <input type="password" name="contraseña" placeholder="Contraseña" required>
+                    <input type="password" name="password" placeholder="Contraseña" required>
                 </div>
                 <div class="años">
                     <p>Edad:</p>

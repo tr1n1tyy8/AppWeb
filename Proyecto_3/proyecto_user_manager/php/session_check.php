@@ -12,9 +12,4 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-// compruebo si el usuario es o no admin, para controlar sus accesos a las urls
-if ($_SESSION['usuario_rol'] !== 'admin') {
-    header("Location: index.php");
-    exit();
-}
 ?>

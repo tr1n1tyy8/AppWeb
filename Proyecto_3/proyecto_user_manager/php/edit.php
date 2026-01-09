@@ -4,16 +4,16 @@
 include "session_check.php";
 include "db.php";
 
-// Si el usuario no está logado (no tiene id la url)
-if (!isset($_GET['id'])) {
-    header("Location: list.php");
-    exit;
+// compruebo si el usuario es o no admin, para controlar sus accesos a las urls
+if ($_SESSION['usuario_rol'] !== 'admin') {
+    header("Location: index.php");
+    exit();
 }
 
 $id = $_GET["id"];
 
 // Obtener los datos del usuario
-$stmt = $cpdo->prepare("SELECT * FROM usuarios WHERE id = ?");
+$stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
 $stmt->execute([$id]);
 $usuario = $stmt->fetch();
 
@@ -38,23 +38,37 @@ if (!$usuario) {
         <h1>Editar Usuario</h1>
 <!--Formulario para editar usuario-->
         <form method="POST" action="procesar_edit.php?id=<?= $usuario['id'] ?>"> <!--Comprobar q usuario q se está editando es correcto-->
+
+            <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
+            
+            <label>Nombre:</label>
             <input type="text" name="nombre" value="<?= $usuario['nombre'] ?>" placeholder="Nombre">
+
+            <label>E-Mail:</label>
             <input type="email" name="email" value="<?= $usuario['email'] ?>" placeholder="Email">
-            <input type="password" name="contraseña" value="<?= $usuario['contraseña'] ?>" placeholder="Contraseña">
+
+            <label>Nueva Contraseña:</label>
+            <input type="password" name="password" value="" placeholder="Contraseña"> <!--No pone valor para que no se hashee la contraseña dos veces (no se podría recuperar)-->
+
+            <label>Edad:</label>
             <input type="number" name="edad" value="<?= $usuario['edad'] ?>" placeholder="Edad">
+
+            <label>Rol:</label>
             <select name="rol">
-                <option value="user" <?= $usuario['rol']=='user'?'selected':'' ?>>Usuario</option>
-                <option value="admin" <?= $usuario['rol']=='admin'?'selected':'' ?>>Administrador</option>
+                <option value="user" <?= ($usuario['rol']=='user') ? 'selected' : '' ?>>Usuario</option>
+                <option value="admin" <?= ($usuario['rol']=='admin') ? 'selected' : '' ?>>Administrador</option>
             </select>
+
             <button type="submit" class="button">Actualizar</button>
+
         </form>
-<!--Formulario para eliminar usuario (onsubmit es JS)-->
-        <form method="POST" action="delete.php?id=<?$usuario['id']?>" onsubmit="return confirm('¿Está seguro de que desea eliminar el usuario?')">
-            <input type="hidden" name="id" value="<?php echo $id;?>"> <!--Para que obtenga el id del usuario a borrar y no se muestre-->
-            <button type="submit" class="button">Eliminar</button>
-        </form>
+
+
         <a href="list.php">Volver al listado</a>
+
     </div>
+
     <script src="../js/validacion.js"></script>
+
 </body>
 </html>

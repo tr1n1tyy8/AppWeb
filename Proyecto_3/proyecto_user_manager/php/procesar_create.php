@@ -4,13 +4,19 @@
 include "session_check.php";
 include "db.php";
 
+// compruebo si el usuario es o no admin, para controlar sus accesos a las urls
+if ($_SESSION['usuario_rol'] !== 'admin') {
+    header("Location: index.php");
+    exit();
+}
+
 // Obtener datos del usuario
 if ($_POST) {
     $nombre = $_POST["nombre"];
     $email = $_POST["email"];
     $edad = $_POST["edad"];
     $rol = $_POST["rol"];
-    $contraseña = trim($_POST["contraseña"]);
+    $password = trim($_POST["password"]);
 
     // Comprobamos que el usuario ya exista con el email
     $check_stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
@@ -23,7 +29,7 @@ if ($_POST) {
     }
 
     // Si el usuario no existe, lo agregamos
-    $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+    $hash = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email, contraseña, edad, rol) VALUES (?,?,?,?,?)");
 
     // Ejecutamos todo de golpe en un array

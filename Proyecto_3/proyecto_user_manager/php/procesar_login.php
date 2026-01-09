@@ -1,26 +1,18 @@
 <?php
 //PÁGINA PARA PROCESAR LOS DATOS DE INICIO DE SESIÓN DEL USUARIO
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 include "db.php";
 
 if ($_POST) {
     $nombre= $_POST['nombre'];
-    $contraseña= trim($_POST['contraseña']);
+    $password= trim($_POST['password']);
 
     // Consulta segura
     $stmt = $pdo->prepare("SELECT id, nombre, contraseña, rol FROM usuarios WHERE nombre = ?");
     $stmt->execute([$nombre]);
     $usuario = $stmt->fetch();  //fetch obtiene datos de las filas de la bbdd y comprueba que existan
 
-    //echo "Contraseña escrita: " . $contraseña . "<br>";
-    //echo "Usuario encontrado";
-    //print_r($usuario);
-    //die();
-
-    if ($usuario && password_verify($contraseña, $usuario[2])) {  //verifica la si la contraseña es igual al hash del id conseguido
+    if ($usuario && password_verify($password, $usuario[2])) {  //verifica la si la contraseña es igual al hash del id conseguido
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nombre'] = $usuario['nombre'];   //asociamos variables a datos de la bbdd
         $_SESSION['usuario_rol'] = $usuario['rol'];

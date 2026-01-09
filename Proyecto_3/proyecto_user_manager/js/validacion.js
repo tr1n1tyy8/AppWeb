@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const email = form.email.value.trim();
             const edad = form.edad.value.trim();
             const rol = form.rol.value;
-            const contraseña = form.contraseña.value.trim();
+            const password = form.password.value.trim();
 
             let errores = [];
 
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 errores.push("Selecciona un rol válido.");
             }
 
-            if (nombre == null || email == null || edad == null || rol == null || contraseña == null) {
+            if (nombre == "" || email == "" || edad == ""|| rol == "") {
                 errores.push("El campo no debe estar vacío.")
             }
 

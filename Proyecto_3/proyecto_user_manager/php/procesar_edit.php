@@ -1,37 +1,42 @@
 <?php
+
 // PÁGINA PARA PROCESAR LA EDICIÓN DEL USUARIO
 
 include "session_check.php";
 include "db.php";
 
-// Comprobar que se han recibido los datos y el ID
-if ($_POST && isset($_GET['id'])) {
-    $id = $_GET['id'];
+// compruebo si el usuario es o no admin, para controlar sus accesos a las urls
+if ($_SESSION['usuario_rol'] !== 'admin') {
+    header("Location: index.php");
+    exit();
+}
 
+$id = $_GET['id'] ?? $_POST['id'] ?? null; // busca el ID por la URL y si no lo encuentra (null) lo busca en el formulario
+
+// Comprobar que se han recibido los datos y el ID
+if ($_POST && $id) {
     $nombre = $_POST['nombre'];
     $email= $_POST['email'];
-    $contraseña = trim($_POST['contraseña']);
+    $password = trim($_POST['password']);
     $edad = $_POST['edad'];
     $rol = $_POST['rol'];
 
-    // Comprobar email duplicado en la bbdd ??
+    // Comprobar email duplicado en la bbdd
     if (!empty($email)) {
-        $check_email = $pdo->prepare("SELECT id FROM usuarios WHERE email = ? AND id != )");
+        $check_email = $pdo->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?)");
         $check_email->execute([$email, $id]);
         if($check_email->fetch()) {
-            echo "El email ya existe en la base de datos.";
             header("Location: edit.php");
             exit;
         }
     }
     // Obtener los datos para que el usuario pueda cambiar los valores que quiera sin q sean obligatorios
     $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
-    $stmt->execute(['id']);
+    $stmt->execute([$id]);
     $usuario_actual= $stmt->fetch();
 
     if (!$usuario_actual) {
         header("Location: list.php");
-        echo "Usuario no encontrado";
         exit;
     }
 
@@ -44,18 +49,18 @@ if ($_POST && isset($_GET['id'])) {
     // Ejecutar consulta de update
     $query = "UPDATE usuarios SET nombre = :nom, email = :em, edad = :ed, rol = :rol";
     $params = [
-        'nom' => $nombre_vacio,
-        'em' => $email_vacio,
-        'ed' => $edad_vacio,
-        'rol' => $rol_vacio,
-        'id' => $id
+        ':nom' => $nombre_vacio,
+        ':em' => $email_vacio,
+        ':ed' => $edad_vacio,
+        ':rol' => $rol_vacio,
+        ':id' => $id
     ];
 
     // Añadir contraseña si se ha introducido una nueva
-    if (!empty($contraseña)) {
-        $hash = password_hash($contraseña, PASSWORD_DEFAULT);
-        $query .= ", contraseña = :pass";
-        $params['pass'] = &$hash;
+    if (!empty($password)) {
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $query .= ", password = :pass";
+        $params[':pass'] = $hash;
     }
 
     // Finalizar consulta y añadir ID
@@ -66,11 +71,12 @@ if ($_POST && isset($_GET['id'])) {
 
     if ($stmt_update->execute($params)) {
         header("Location: list.php");
-        exit;
-    } else {
+        exit();
+    }
+    //si hay un error al actualizar
+    else {
         header("Location: edit.php");
-        echo "Error al actualizar el usuario";
-        exit;
+        exit();
     }
 } else {
     header("Location: list.php");
