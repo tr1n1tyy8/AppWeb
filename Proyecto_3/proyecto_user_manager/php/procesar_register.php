@@ -5,7 +5,7 @@ include "db.php";
 
 if ($_POST) {
     $email = $_POST['email'];
-    $password= trim($_POST['password']);
+    $contraseña= trim($_POST['contraseña']);
 
     // Consulta segura
     $stmt = $pdo->prepare("SELECT id, nombre, contraseña, rol FROM usuarios WHERE email = ?");

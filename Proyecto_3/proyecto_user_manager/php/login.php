@@ -20,7 +20,7 @@
                 <label>Nombre de usuario:</label>
                 <input type="text" name="nombre" placeholder="Nombre" style="height:18%; font-size:large"><br><br>
                 <label>Contraseña:</label>
-                <input type="password" name="password" placeholder="Contraseña" style="height:15%; font-size:large"><br><br>
+                <input type="password" name="contraseña" placeholder="Contraseña" style="height:15%; font-size:large"><br><br>
                 <button type="submit">Iniciar sesión</button>
             </form>
 

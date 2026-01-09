@@ -48,7 +48,7 @@ if (!$usuario) {
             <input type="email" name="email" value="<?= $usuario['email'] ?>" placeholder="Email">
 
             <label>Nueva Contraseña:</label>
-            <input type="password" name="password" value="" placeholder="Contraseña"> <!--No pone valor para que no se hashee la contraseña dos veces (no se podría recuperar)-->
+            <input type="password" name="contraseña" value="" placeholder="Contraseña"> <!--No pone valor para que no se hashee la contraseña dos veces (no se podría recuperar)-->
 
             <label>Edad:</label>
             <input type="number" name="edad" value="<?= $usuario['edad'] ?>" placeholder="Edad">

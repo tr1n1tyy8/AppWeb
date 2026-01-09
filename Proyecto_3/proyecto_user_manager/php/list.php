@@ -36,12 +36,12 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $u['id'] ?></td>
                     <td><?= $u['nombre'] ?></td>
                     <td><?= $u['email'] ?></td>
-                    <td><?= $u['password'] ?></td>
+                    <td><?= $u['contraseña'] ?></td>
                     <td><?= $u['edad'] ?></td>
                     <td><?= $u['rol'] ?></td>
                     <td>
                         <?php if ($_SESSION['usuario_rol'] === 'admin'): ?>
-                            <a href="edit.php?id=<?$u['id'] ?>" style="color: black;">Editar</a>
+                            <a href="edit.php?id=<?= $u['id'] ?>" style="color: black;">Editar</a>
 
                             <!--Formulario para eliminar usuario (onsubmit es JS)-->
                             <form method="POST" action="delete.php?id=<?= $usuario['id'] ?>" onsubmit="return confirm('¿Está seguro de que desea eliminar el usuario?')">

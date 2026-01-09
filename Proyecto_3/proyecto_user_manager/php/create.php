@@ -33,7 +33,7 @@ if ($_SESSION['usuario_rol'] !== 'admin') {
                 </div>
                 <div class="contraseña">
                     <p>Contraseña:</p>
-                    <input type="password" name="password" placeholder="Contraseña" required>
+                    <input type="password" name="contraseña" placeholder="Contraseña" required>
                 </div>
                 <div class="años">
                     <p>Edad:</p>

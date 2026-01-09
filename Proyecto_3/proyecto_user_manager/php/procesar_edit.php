@@ -1,5 +1,8 @@
 <?php
-
+/*
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+*/
 // PÁGINA PARA PROCESAR LA EDICIÓN DEL USUARIO
 
 include "session_check.php";
@@ -17,13 +20,13 @@ $id = $_GET['id'] ?? $_POST['id'] ?? null; // busca el ID por la URL y si no lo 
 if ($_POST && $id) {
     $nombre = $_POST['nombre'];
     $email= $_POST['email'];
-    $password = trim($_POST['password']);
+    $contraseña = trim($_POST['contraseña']);
     $edad = $_POST['edad'];
     $rol = $_POST['rol'];
 
     // Comprobar email duplicado en la bbdd
     if (!empty($email)) {
-        $check_email = $pdo->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?)");
+        $check_email = $pdo->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");
         $check_email->execute([$email, $id]);
         if($check_email->fetch()) {
             header("Location: edit.php");
@@ -57,9 +60,9 @@ if ($_POST && $id) {
     ];
 
     // Añadir contraseña si se ha introducido una nueva
-    if (!empty($password)) {
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        $query .= ", password = :pass";
+    if (!empty($contraseña)) {
+        $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+        $query .= " , contraseña = :pass";
         $params[':pass'] = $hash;
     }
 
