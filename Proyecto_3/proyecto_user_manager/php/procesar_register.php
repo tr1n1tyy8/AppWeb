@@ -1,31 +1,56 @@
-<?php /*
+<?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 //PÁGINA PARA PROCESAR LOS DATOS DE REGISTRO DEL USUARIO
+
 session_start();
 include "db.php";
 
+$mensaje = "";
+
+
 if ($_POST) {
-    $email = $_POST['email'];
+    $nombre = $_POST['nombre'];
     $contraseña= trim($_POST['contraseña']);
 
-    // Consulta segura
-    $stmt = $pdo->prepare("SELECT id, nombre, contraseña, rol FROM usuarios WHERE email = ?");
-    $stmt->execute([$email]);
-    $usuario = $stmt->fetch();  //fetch obtiene datos de las filas de la bbdd y comprueba que existan
+    // Comprobamos que el usuario no existe antes de hacer la consulta
+    if ($nombre !== '' && $contraseña !== '') {
+        $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE nombre = ?");
+        $stmt->execute([$nombre]);
+        $usuario = $stmt->fetch();  //fetch obtiene datos de las filas de la bbdd y comprueba que existan 
+    }
 
-    if ($usuario && password_verify($password, $usuario['password'])) {  //verifica la si la contraseña es igual al hash del id conseguido
-        $_SESSION['usuario_id'] = $usuario['id'];
-        $_SESSION['usuario_nombre'] = $usuario['nombre'];   //asociamos variables a datos de la bbdd
-        $_SESSION['usuario_rol'] = $usuario['rol'];
-        
-        header("Location: index.php");  //redirigimos a la pág. principal si todo es correcto
-        exit();
-        }
-    // Si falla algo en el login
+    // Si el usuario ya existe, mostramos un mensaje
+    if ($usuario) {
+        $mensaje = "El usuario ya está registrado";
+    } 
+    // Si el usuario no existe, lo insertamos
     else {
-        header("Location: login.php");
-        echo "Error: credenciales inválidas"; //en js mejor
-        exit;
+        $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+        $email_por_defecto = $nombre . "@gmail.com";
+        $edad_por_defecto = "0";    //pongo valores por defecto pq en la bbdd no deja campos vacios y en registro solo hace falta nombre y contraseña
+        $rol_por_defecto = "user";
+
+        $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email, contraseña, edad, rol) VALUES (?, ?, ?, ?, ?)");
+
+        // Ejecutamos todo de golpe en un array
+        if ($stmt->execute([$nombre, $email_por_defecto, $hash, $edad_por_defecto, $rol_por_defecto])) {
+            header("Location: login.php");
+            $mensaje = "Registro exitoso";
+            exit();
+        }
+        // Si hay un error en la conexión y transferencia de datos
+        else {
+           header("Location: register.php");
+           $mensaje = "Registro fallido";
+           exit();
+        }    
     }
 }
-*/
+
+// Cerramos las conexión
+$conn->close();
+$comprobar->close();
 ?>
