@@ -41,12 +41,12 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $u['rol'] ?></td>
                     <td>
                         <?php if ($_SESSION['usuario_rol'] === 'admin'): ?>
-                            <a href="edit.php?id=<?= $u['id'] ?>" style="color: black;">Editar</a>
+                            <a href="edit.php?id=<?= $u['id'] ?>" style="color: white;" class="del_button">Editar</a>
 
                             <!--Formulario para eliminar usuario (onsubmit es JS)-->
                             <form method="POST" action="delete.php?id=<?= $usuario['id'] ?>" onsubmit="return confirm('¿Está seguro de que desea eliminar el usuario?')">
                                 <input type="hidden" name="id" value="<?php echo $id;?>"> <!--Para que obtenga el id del usuario a borrar y no se muestre-->
-                                <button type="submit" class="del_button">Eliminar</button>
+                                <button type="submit" class="del_button" style="font-size: large;">Eliminar</button>
                             </form>
 
                         <?php endif; ?>
@@ -55,8 +55,10 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </table>
         </div>
-        <a href="../php/create.php" style="color: black;">Crear Usuario</a>
-        <a href="../php/index.php" style="color: black;">Volver al Inicio</a>
+        <div class="enlaces">
+            <a href="../php/create.php" style="color: white;" class="list_button">Crear Usuario</a>
+            <a href="../php/index.php" style="color: white;" lass="list_button">Volver al Inicio</a>
+        </div>
     </div>
 
     <script src="../js/validacion.js"></script>
