@@ -3,6 +3,7 @@
 
 include "db.php";
 session_start();
+date_default_timezone_set('Europe/Madrid');
 
 if ($_POST) {
     $nombre= $_POST['nombre'];
@@ -17,6 +18,7 @@ if ($_POST) {
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nombre'] = $usuario['nombre'];   //asociamos variables a datos de la bbdd
         $_SESSION['usuario_rol'] = $usuario['rol'];
+        $_SESSION['hora_inicio_sesion'] = date("d/m/Y") . " a las " . date("H:i");
         
         header("Location: index.php");  //redirigimos a la pág. principal si todo es correcto
         exit();

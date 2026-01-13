@@ -11,20 +11,20 @@
 </head>
     <body>
         <div class="flexbox">
-            <div class="titulo">
-                <h1>Iniciar Sesión</h1>
-            </div>
-            <br>
+                <div class="titulo">
+                    <h1>Iniciar Sesión</h1>
+                </div>
+                <br>
 
-            <form action="procesar_login.php" method="POST">
-                <label>Nombre de usuario:</label>
-                <input type="text" name="nombre" placeholder="Nombre" style="height:18%; font-size:large"><br><br>
-                <label>Contraseña:</label>
-                <input type="password" name="contraseña" placeholder="Contraseña" style="height:15%; font-size:large"><br><br>
-                <button type="submit">Iniciar sesión</button>
-            </form>
+                <form action="procesar_login.php" method="POST">
+                    <label>Nombre de usuario:</label>
+                    <input type="text" name="nombre" placeholder="Nombre" style="height:18%; font-size:large"><br><br>
+                    <label>Contraseña:</label>
+                    <input type="password" name="contraseña" placeholder="Contraseña" style="height:15%; font-size:large"><br><br>
+                    <button type="submit">Iniciar sesión</button>
+                </form>
 
-            <p>¿No tiene una cuenta? | <a href="register.php" style="color: black;">Regístrese aquí</a></p>
+                <p>¿No tiene una cuenta? | <a href="register.php" style="color: black;">Regístrese aquí</a></p>
         </div>
     </body>
 </html>

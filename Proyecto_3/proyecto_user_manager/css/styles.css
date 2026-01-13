@@ -21,19 +21,18 @@
         justify-content: center;
         align-content: center;
         text-align: center;
-        width: 850px;
+        width: 900px;
         height: 950px;
         border-radius: 30px;
         padding: 10px;
         background-color: white;
     }
 
-    .flexbox h1 {
-        margin-top: 50px;
-        margin-bottom: 30px;
-        font-size: 50px;
-        width: 85%;
-        height: 20vh;
+    .flexbox .titulo {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 60px;
+        font-size: 25px;
     }
 
     .contenedor {
@@ -154,19 +153,19 @@
 
     .flexbox form {
         font-size: larger;
+        margin-bottom: 20px;
     }
 
     .flexbox p {
-        margin-top: 100px;
-        margin-bottom: 0;
+        margin-top: 80px;
         font-size: large;
     }
 
     .flexbox button {
         width: 700px;
         height: 50px;
-        margin-top: 30px;
-        margin-bottom: 50px;
+        margin-top: 50px;
+        margin-bottom: 30px;
         font-size: 20px;
         background-color: #474C52;
         color: white;
@@ -181,9 +180,13 @@
         box-shadow: 0 4px 8px grey;
     }
     
-    a {
+    .flexbox a {
         text-decoration: none;
         color: white;
+    }
+
+    .flexbox a:hover {
+        color: mediumslateblue;
     }
 
     /*BLOQUE DE ESTILOS DE LA PÁGINA DEL LISTADO*/
@@ -287,6 +290,29 @@
         border-radius: 50px;
         cursor: pointer;
         transition: all 0.3s ease;
+    }
+
+    /*BLOQUE DEL ÍNDICE*/
+
+    .flexbox_index {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        width: 1200px;
+        height: 950px;
+        border-radius: 30px;
+        padding: 10px;
+        background-color: white;
+    }
+
+    .flexbox_index h1 {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 60px;
+        font-size: 60px;
     }
     
 }

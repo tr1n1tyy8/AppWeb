@@ -13,7 +13,7 @@
     <body>
         <div class="flexbox">
             <div class="titulo">
-                <h1>Regístrese si no tiene una cuenta</h1>
+                <h1>Registrarse</h1>
             </div>
             <br>
 
@@ -25,7 +25,7 @@
                 <button type="submit">Registrarse</button>
             </form>
 
-            <p>¿Ya tiene una cuenta? | <a href="create.php" style="color: black;">Inicie sesión aquí</a></p>
+            <p>¿Ya tiene una cuenta? | <a href="login.php" style="color: black;">Inicie sesión aquí</a></p>
         </div>
     </body>
 </html>
