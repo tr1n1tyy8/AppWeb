@@ -36,7 +36,7 @@ if (!$usuario) {
 <body>
     <div class="flexbox">
         <div class="titulo">
-            <h1 style="margin-bottom: 0px; margin-top: 0px;">Editar Usuario</h1>
+            <h1 style="margin-bottom: 0px; margin-top: 30px;">Editar Usuario</h1>
         </div>
 <!--Formulario para editar usuario-->
         <form method="POST" action="procesar_edit.php?id=<?= $usuario['id'] ?>"> <!--Comprobar q usuario q se está editando es correcto-->
@@ -70,13 +70,11 @@ if (!$usuario) {
                         <option value="admin" <?= ($usuario['rol']=='admin') ? 'selected' : '' ?>>Administrador</option>
                     </select>
                 </div>
-                <button type="submit" class="upload_button">Actualizar</button>
             </div>
         </form>
-
-
-        <a href="list.php">Volver al listado</a>
-
+        <div class="editar">
+            <button type="submit" class="upload_button">Actualizar</button>
+        </div>
     </div>
 
     <script src="../js/validacion.js"></script>

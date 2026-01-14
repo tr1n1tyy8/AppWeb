@@ -36,5 +36,8 @@
 
             <p>¿Ya tiene una cuenta? | <a href="login.php" style="color: black; text-decoration: underline">Inicie sesión aquí</a></p>
         </div>
+
+        <script src="../js/validacion.js"></script>
+
     </body>
 </html>

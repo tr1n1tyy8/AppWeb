@@ -35,5 +35,8 @@
 
                 <p>¿No tiene una cuenta? | <a href="register.php" style="color: black; text-decoration: underline">Regístrese aquí</a></p>
         </div>
+
+        <script src="../js/validacion.js"></script>
+        
     </body>
 </html>

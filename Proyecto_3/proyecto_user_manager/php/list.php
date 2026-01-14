@@ -25,7 +25,6 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <div class="flexbox_list">
         <h1>Listado de Usuarios</h1>
-        <p>Aquí encontrarás el listado de los usuarios creados en el sistema.</p>
         <div class="contenedor_list">
             <table>
                 <tr class="top_table">
@@ -45,8 +44,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <a href="edit.php?id=<?= $u['id'] ?>" style="color: white; text-decoration: none;" class="del_button">Editar</a>
 
                             <!--Formulario para eliminar usuario (onsubmit es JS)-->
-                            <form method="POST" action="delete.php?id=<?= $usuario['id'] ?>" onsubmit="return confirm('¿Está seguro de que desea eliminar el usuario?')">
-                                <input type="hidden" name="id" value="<?php echo $id;?>"> <!--Para que obtenga el id del usuario a borrar y no se muestre-->
+                            <form method="POST" action="delete.php?id=<?= $u['id'] ?>" onsubmit="return confirm('¿Está seguro de que desea eliminar el usuario?')">
+                                <!--<input type="hidden" name="id" value=""> Para que obtenga el id del usuario a borrar y no se muestre-->
                                 <button type="submit" style="font-size: large;" class="del_button">Eliminar</button>
                             </form>
 
