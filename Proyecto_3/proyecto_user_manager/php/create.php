@@ -19,9 +19,9 @@ if ($_SESSION['usuario_rol'] !== 'admin') {
 </head>
 <body>
     <div class="flexbox">
-        <h1>Registro de Usuario</h1>
+        <h1 style="font-size: 50px; margin-top: 60px">Registro de Usuario</h1>
         <form method="POST" action="procesar_create.php">
-            <div class="contenedor">
+            <div class="contenedor" style="margin-top: 20px; margin-bottom: 0px;">
                 <div class="user">
                     <p>Nombre de usuario:</p>
                     <br>
@@ -48,7 +48,7 @@ if ($_SESSION['usuario_rol'] !== 'admin') {
                 </div>
             </div>
             <br>
-            <button class="boton" type="submit">Crear Usuario</button>
+            <button class="boton" type="submit" style="margin-bottom: 50px; margin-top: 10px;">Crear Usuario</button>
         </form>
     </div>
     <script src="../js/validacion.js"></script>

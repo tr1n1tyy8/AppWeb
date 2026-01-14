@@ -18,14 +18,23 @@
             <br>
 
             <form action="procesar_register.php" method="POST">
-                <label>Nombre de usuario:</label>
-                <input type="text" name="nombre" placeholder="Nombre" style="height:18%; font-size:large"><br><br>
-                <label>Contraseña:</label>
-                <input type="password" name="contraseña" placeholder="Contraseña" style="height:15%; font-size:large"><br><br>
-                <button type="submit">Registrarse</button>
+                <div class="contenedor_login">
+                    <div class="usuario">
+                        <label>Nombre de usuario:</label>
+                        <br>
+                        <input type="text" name="nombre" placeholder="Nombre" style="height:18%; font-size:large"><br><br>
+                    </div>
+                    <br>
+                    <div class="password">
+                        <label>Contraseña:</label>
+                        <br>
+                        <input type="password" name="contraseña" placeholder="Contraseña" style="height:15%; font-size:large"><br><br>
+                    </div>
+                    <button type="submit">Registrarse</button>
+                </div>
             </form>
 
-            <p>¿Ya tiene una cuenta? | <a href="login.php" style="color: black;">Inicie sesión aquí</a></p>
+            <p>¿Ya tiene una cuenta? | <a href="login.php" style="color: black; text-decoration: underline">Inicie sesión aquí</a></p>
         </div>
     </body>
 </html>

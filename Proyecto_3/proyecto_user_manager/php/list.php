@@ -28,8 +28,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <p>Aquí encontrarás el listado de los usuarios creados en el sistema.</p>
         <div class="contenedor_list">
             <table>
-                <tr>
-                    <th>ID</th><th>Nombre</th><th>Email</th><th>Contraseña</th><th>Edad</th><th>Rol</th>
+                <tr class="top_table">
+                    <th>ID</th><th style="width: 120px;">Nombre</th><th style="width: 200px;">Email</th><th>Contraseña</th><th>Edad</th><th>Rol</th>
                 </tr>
                 <?php foreach ($usuarios as $u): ?>
                 <tr>
@@ -39,14 +39,15 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $u['contraseña'] ?></td>
                     <td><?= $u['edad'] ?></td>
                     <td><?= $u['rol'] ?></td>
-                    <td>
+
+                    <td style="background-color: #EBEEF0; border: none; border-radius: 0px;" class="opciones">
                         <?php if ($_SESSION['usuario_rol'] === 'admin'): ?>
-                            <a href="edit.php?id=<?= $u['id'] ?>" style="color: white;" class="del_button">Editar</a>
+                            <a href="edit.php?id=<?= $u['id'] ?>" style="color: white; text-decoration: none;" class="del_button">Editar</a>
 
                             <!--Formulario para eliminar usuario (onsubmit es JS)-->
                             <form method="POST" action="delete.php?id=<?= $usuario['id'] ?>" onsubmit="return confirm('¿Está seguro de que desea eliminar el usuario?')">
                                 <input type="hidden" name="id" value="<?php echo $id;?>"> <!--Para que obtenga el id del usuario a borrar y no se muestre-->
-                                <button type="submit" class="del_button" style="font-size: large;">Eliminar</button>
+                                <button type="submit" style="font-size: large;" class="del_button">Eliminar</button>
                             </form>
 
                         <?php endif; ?>
@@ -56,8 +57,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </table>
         </div>
         <div class="enlaces">
-            <a href="../php/create.php" style="color: white;" class="list_button">Crear Usuario</a>
-            <a href="../php/index.php" style="color: white;" lass="list_button">Volver al Inicio</a>
+            <a href="../php/create.php" style="color: white; text-decoration: none;" class="list_button">Crear Usuario</a>
+            <a href="../php/index.php" style="color: white; text-decoration: none;" class="list_button">Volver al Inicio</a>
         </div>
     </div>
 
