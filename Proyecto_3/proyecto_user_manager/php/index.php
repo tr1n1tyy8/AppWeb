@@ -41,7 +41,10 @@
             </table>
         </div>
         <p style="margin-top: 50px;">Último inicio de sesión: <?php echo $_SESSION['hora_inicio_sesion']; ?></p>
-        <a href="list.php" style="text-decoration: none;">Ir al CRUD</a>
+        <div class="opciones_index">
+            <a href="list.php" style="text-decoration: none;">Ir al CRUD</a>
+            <a href="login.php" style="text-decoration: none;">Cerrar Sesión</a>
+        </div>
     </div>
 </body>
 </html>

@@ -71,10 +71,10 @@ if (!$usuario) {
                     </select>
                 </div>
             </div>
-        </form>
         <div class="editar">
             <button type="submit" class="upload_button">Actualizar</button>
         </div>
+        </form>
     </div>
 
     <script src="../js/validacion.js"></script>
